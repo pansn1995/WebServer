@@ -137,7 +137,7 @@ int HttpData::parseRcvMsg()
 {
     if (!spCurrPro_)// 新报文
     {
-        SP_HttpProcessContext spProcessContext (new HttpProcessContext);
+        SP_HttpProcessContext spProcessContext =std::make_shared<HttpProcessContext>();
         spCurrPro_ = spProcessContext;;
 
         // 分离命令

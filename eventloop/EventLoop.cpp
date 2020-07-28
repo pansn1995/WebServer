@@ -38,13 +38,13 @@ int createTimerFd(int intervals)
 EventLoop::EventLoop()
     : looping_(false),
       activeChannelList_(),
-      poller_(new Epoll()),
+      poller_(std::make_shared<Epoll>()),
       wakeupFd_(createEventfd()),
       quit_(false),
       callingPendingFunctors_(false),
       threadId_(CurrentThread::tid()),
-      pwakeupChannel_(new Channel()) ,
-      ponTimeChannel_(new Channel())
+      pwakeupChannel_(std::make_shared<Channel>()) ,
+      ponTimeChannel_(std::make_shared<Channel>())
 {
     if(t_loopInThisThread)
     {

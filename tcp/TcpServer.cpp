@@ -19,7 +19,7 @@ TcpServer::TcpServer(EventLoop *loop, int port, int threadNum, int idleSeconds)
     : serverSocket_(),
       loop_(loop),
       eventLoopThreadPool_(new EventLoopThreadPool(loop, threadNum)),
-      spServerChannel_(new Channel()),
+      spServerChannel_(std::make_shared<Channel>()),
       connCount_(0),
       timeWheel_(idleSeconds),
       removeIdleConnection_(idleSeconds > 0) 

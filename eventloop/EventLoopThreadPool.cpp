@@ -24,7 +24,7 @@ void EventLoopThreadPool::start()
     mainLoop_->assertInLoopThread();
     started_=true;
     for (int i = 0; i < threadNum_; ++i) {
-        std::shared_ptr<EventLoopThread> t(new EventLoopThread());
+        std::shared_ptr<EventLoopThread> t=std::make_shared<EventLoopThread>();
         t->setName("IO thread"+std::to_string(i+1));
         threadList_.push_back(t);
         t->start();

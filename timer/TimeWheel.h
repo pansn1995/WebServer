@@ -49,7 +49,7 @@ public:
     // 向时间轮添加条目(即向其中加入连接)
     void addConnection(SP_TcpConnection spTcpConn)
     {
-        SP_Entry spEntry(new Entry(spTcpConn));
+        SP_Entry spEntry(std::make_shared<Entry>(spTcpConn));
         connectionBuckets_.back().insert(spEntry);
     } 
 private:

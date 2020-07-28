@@ -11,7 +11,7 @@
 
 TcpConnection::TcpConnection(EventLoop *loop, int fd, struct sockaddr_in clientaddr)
     : loop_(loop),
-      spChannel_(new Channel()),
+      spChannel_(std::make_shared<Channel>()),
 	  socket_(fd),
       clientaddr_(clientaddr),
 	  halfClose_(false),
