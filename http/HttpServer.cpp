@@ -12,7 +12,7 @@ HttpServer::~HttpServer(){}
 
 void HttpServer::handleNewConnection(SP_TcpConnection spTcpConn, EventLoop *loop)
 {
-    SP_HttpData spHttpData(new HttpData(spTcpConn, loop));
+    SP_HttpData spHttpData=std::make_shared<HttpData>(new HttpData(spTcpConn, loop));
 
     //将一份智能指针实参绑定到回调函数中，使得由sptcpconn管理httpdata的生命周期
     spTcpConn->setHandleMessageCallback(std::bind(&HttpData::handleMessage, spHttpData, _1));
