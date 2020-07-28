@@ -8,3 +8,4 @@
 
 4.实现双缓冲异步日志系统
 
+5.将所有shared_ptr<T> t(new T)用std::make_shared<T>()来替换，减少一次内存分配
