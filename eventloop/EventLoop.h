@@ -29,7 +29,7 @@ public:
     void runInLoop(Functor&& cb);
     //添加函数到队列中，如果是其他函数，或者当前在调用等待的cb函数(doPendingFunctor函数)
     void queueInLoop(Functor&& cb);
-    //判断是否是当前loop所在线程在调用
+    //判断是否是当前loop所在IO线程在调用
     bool isInLoopThread()  const{return threadId_==CurrentThread::tid();}
 
     void assertInLoopThread() { assert(isInLoopThread()); }
@@ -56,7 +56,7 @@ private:
     mutable MutexLock mutex_;
     std::vector<Functor> pendingFunctors_;
     bool callingPendingFunctors_;
-    const pid_t threadId_;
+    const pid_t threadId_;//IO线程ID，创建事件循环所在的线程就是IO线程
     SP_Channel pwakeupChannel_;
 
     void wakeUp();//向eventfd写入，从而唤醒epoll

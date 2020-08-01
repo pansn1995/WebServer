@@ -182,9 +182,7 @@ int TcpConnection::sendn(int fd, std::string &bufferOut)
 	ssize_t nbyte = 0;
 	size_t length = 0;
 	length = bufferOut.size();
-    //nbyte = send(fd, buffer, length, 0);
-	//nbyte = send(fd, bufferout.c_str(), length, 0);
-    for (; ;) 
+    while(true)
     {
 	    nbyte = write(fd, bufferOut.c_str(), length);
 	    if (nbyte > 0)
