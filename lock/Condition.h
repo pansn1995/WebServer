@@ -3,7 +3,6 @@
 #include "../lock/MutexLock.h"
 #include <errno.h>
 #include <pthread.h>
-#include <pthread.h>
 #include <time.h>
 #include <cstdint>
 
