@@ -25,12 +25,11 @@ public:
 	{
 		pthread_mutex_unlock(&mutex);
 	}
-	
+private:
 	pthread_mutex_t* get()
 	{
 		return &mutex;
 	}
-private:
 	pthread_mutex_t mutex;
 	// no limit for friend class member
 	friend class Condition;
